@@ -14,7 +14,6 @@ import (
 	"loginExample/util/db"
 	"loginExample/util/logger"
 	"loginExample/util/response"
-	// "loginExample/app/controllers"
 )
 
 var server *gin.Engine

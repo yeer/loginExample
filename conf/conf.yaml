@@ -4,17 +4,17 @@ server:
   domain: "http://127.0.0.1"
 component:
   db:
-    system:
-      host: "172.22.131.242"
+    user:
+      host: "mysql"
       port: "3306"
-      user: "comjia002_wukong"
-      password: "Je6Quo!jei-ph9Esfo$iFee2"
-      database: "comjia_merge"
+      user: "root"
+      password: ""
+      database: "user"
   redis:
-    system:
-      host: "172.22.131.242"
+    user:
+      host: "redis"
       port: "6379"
-      password: "kanjia888888"
+      password: ""
       db: 0
   log:
     console: true

@@ -2,9 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-environment: "test" #部署的环境
+environment: "test"
 namespace:
-  name: "basis" #阿里云镜像的namespace
+  name: "basis"
   repositoryNamespaceName: "test"
   create: true
   annotations: {}
@@ -45,23 +45,17 @@ securityContext:
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-command:
-  - /bin/login
-  - server
+command: ["/bin/login", "server", "-c", "/conf/conf.yaml"]
+
 service:
   type: ClusterIP
   ports:
     - name: http
       port: 10010
 volumes:
-  - name: conf
-    secret:
-      secretName: login
+
 volumeMounts:
-  - name: conf
-    # mountPath: /conf/conf.yaml
-    mountPath: /conf/conf.yaml
-    subPath: conf.yaml
+
 traefik:
   enabled: false
   #   annotations: {}

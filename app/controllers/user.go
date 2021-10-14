@@ -10,6 +10,7 @@ func Index(ctx *response.Context) {
 	ctx.JsonError(constants.StatusOk, "This is Login Example")
 }
 
+// user login
 func Login(ctx *response.Context) {
 	username := ctx.PostForm("username")
 	password := ctx.PostForm("password")
@@ -17,6 +18,7 @@ func Login(ctx *response.Context) {
 		ctx.JsonError(constants.StatusParamsError, "")
 		return
 	}
+
 	service := new(service.User)
 	if service.Login(username, password) != nil {
 		ctx.JsonError(constants.StatusLoginFailure, constants.StatusText(constants.StatusLoginFailure))
@@ -25,6 +27,7 @@ func Login(ctx *response.Context) {
 	ctx.JsonSuccess(constants.StatusOk)
 }
 
+// register user
 func Register(ctx *response.Context) {
 	username := ctx.PostForm("username")
 	password := ctx.PostForm("password")
@@ -32,6 +35,7 @@ func Register(ctx *response.Context) {
 		ctx.JsonError(constants.StatusParamsError, "")
 		return
 	}
+
 	service := new(service.User)
 	if service.CreateUser(username, password) != nil {
 		ctx.JsonError(constants.StatusCreateFailure, constants.StatusText(constants.StatusCreateFailure))

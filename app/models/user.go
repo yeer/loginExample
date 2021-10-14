@@ -6,14 +6,16 @@ import (
 	"time"
 )
 
-//CREATE TABLE `ssssss_users` (
-// 	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-// 	`username` varchar(64) NOT NULL,
-// 	`password` varchar(255) NOT NULL DEFAULT '',
-// 	`create_datetime` int(11) unsigned NOT NULL,
-// 	PRIMARY KEY (`id`),
-// 	UNIQUE KEY `unique_username` (`username`)
-//   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+/*
+  CREATE TABLE `chope_users` (
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`username` varchar(64) NOT NULL,
+	`password` varchar(255) NOT NULL DEFAULT '',
+	`create_datetime` int(11) unsigned NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `unique_username` (`username`)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+*/
 
 type User struct {
 	ID             int64  `gorm:"column:id;primary_key" json:"id"`
@@ -23,11 +25,11 @@ type User struct {
 }
 
 func (m *User) TableName() string {
-	return "ssssss_users"
+	return "chope_users"
 }
 
 func (m *User) Login(username string) (error, string) {
-	err := db.Get(constants.DBName).Select("passowrd").Where("username = ?", username).Limit(1).Find(m).Error
+	err := db.Get(constants.DBName).Select("password").Where("username = ?", username).Limit(1).Find(m).Error
 	return err, m.Password
 }
 

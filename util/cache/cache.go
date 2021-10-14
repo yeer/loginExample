@@ -2,7 +2,10 @@ package cache
 
 import (
 	"fmt"
+	"loginExample/constants"
+	"loginExample/util/logger"
 	"strconv"
+	"time"
 
 	"github.com/go-redis/redis/v7"
 	"github.com/spf13/viper"
@@ -38,4 +41,15 @@ func Get(key string) *redis.Client {
 		panic("redis配置不存在:" + key)
 	}
 	return client
+}
+
+func Log(logtype string, log string) error {
+	redis := Get(constants.CacheName)
+	today := time.Now().Format("2006-01-02")
+	// login:yyyy-mm-dd  = xxx,2021-10-14 20:00:00.999
+	err := redis.HSet(logtype+":"+today, time.Now().Format("2006-01-02 15:04:05"), log).Err()
+	if err != nil {
+		logger.Error("SetLog Error:", err, logtype)
+	}
+	return err
 }

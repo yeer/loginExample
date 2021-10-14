@@ -8,4 +8,5 @@ RUN apk add --no-cache tzdata \
 WORKDIR .
 ADD conf /conf
 ADD build/login  /bin/
-ENTRYPOINT [ "/bin/login" ]
+# ENTRYPOINT [ "/bin/login" ]
+CMD [ "/bin/sh" ]
