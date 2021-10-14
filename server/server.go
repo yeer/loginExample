@@ -9,9 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 
+	"loginExample/app/controllers"
 	"loginExample/util/cache"
 	"loginExample/util/db"
 	"loginExample/util/logger"
+	"loginExample/util/response"
 	// "loginExample/app/controllers"
 )
 
@@ -67,19 +69,21 @@ func Init() (err error) {
 	if viper.GetString("server.mode") == "release" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-	if viper.GetString("server.domain") != "" {
-		constants.DOMAIN = viper.GetString("server.domain")
-	}
+
 	server = gin.New()
 	server.Use(Logger)
 	server.Use(Recover)
 	return nil
 }
 
+// routers
 func setupRouter() {
-	server.GET("/", util.Handle(controllers.MainIndex))
-	server.GET("/:path/:url", util.Handle(controllers.UUrlMainGet))
-	server.POST("/u-url/:path/create", util.Handle(controllers.UUrlMainCreate))
+	server.GET("/", response.Handle(controllers.Index))
+	v1 := server.Group("v1")
+	{
+		v1.POST("/users/create", response.Handle(controllers.Register))
+		v1.POST("/login", response.Handle(controllers.Login))
+	}
 }
 
 func Run() {

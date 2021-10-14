@@ -5,18 +5,18 @@ server:
 component:
   db:
     system:
-      host: "mysql"
+      host: "172.22.131.242"
       port: "3306"
-      user: "root"
-      password: "root"
-      database: "user"
+      user: "comjia002_wukong"
+      password: "Je6Quo!jei-ph9Esfo$iFee2"
+      database: "comjia_merge"
   redis:
     system:
-      host: "redis"
+      host: "172.22.131.242"
       port: "6379"
-      password: "redis"
+      password: "kanjia888888"
       db: 0
   log:
     console: true
     level: "debug"
-    dir: "/log/"
+    dir: "./log/"

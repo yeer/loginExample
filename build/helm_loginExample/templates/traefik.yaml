@@ -1,0 +1,35 @@
+{{- if .Values.traefik.enabled -}}
+  {{- $fullName := include "login.fullname" . -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}
+  labels:
+  {{- include "login.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`{{ include "login.http" . }}`)
+      kind: Rule
+      services:
+  {{- toYaml .Values.traefik.http.services | nindent 8 }}
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}-grpc
+  labels:
+  {{- include "login.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - grpc
+  routes:
+    - match: Host(`{{ include "login.grpc" . }}`)
+      kind: Rule
+      services:
+  {{- toYaml .Values.traefik.grpc.services | nindent 8 }}
+  tls:
+    secretName: {{ .Values.traefik.grpc.tls }}
+{{- end }}

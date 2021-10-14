@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"loginExample/server"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"loginExample/server"
 )
 
 var cfgFile string
@@ -12,7 +13,7 @@ var cfgFile string
 func init() {
 	rootCmd.AddCommand(serverCmd)
 	cobra.OnInitialize(initConf)
-	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "./conf.yaml", "Start server with provided configuration file")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "../conf/conf.yaml", "Start server with provided configuration file")
 }
 
 var serverCmd = &cobra.Command{

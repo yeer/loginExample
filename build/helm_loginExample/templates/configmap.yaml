@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.repoNamespace }}
+type: Opaque
+data:
+{{ (.Files.Glob "conf/*.yaml").AsSecrets | indent 2 }}
+# {{- if contains "prod" .Values.environment }}
+# {{ (.Files.Glob "conf/ssl/tls.crt").AsSecrets | indent 2 }}
+# {{ (.Files.Glob "conf/ssl/tls.key").AsSecrets | indent 2 }}
+# {{- end }}

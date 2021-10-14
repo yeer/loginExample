@@ -8,9 +8,9 @@ import (
 )
 
 type Response struct {
-	Code   int         `json:"code"`
-	ErrMsg string      `json:"errMsg"`
-	Data   interface{} `json:"data"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
 
 type HandlerFunc func(c *Context)
@@ -30,9 +30,9 @@ type Context struct {
 
 func (c *Context) JsonSuccess(data interface{}) {
 	c.Context.JSON(http.StatusOK, Response{
-		Code:   constants.StatusOk,
-		ErrMsg: "success",
-		Data:   data,
+		Code:    constants.StatusOk,
+		Message: "success",
+		Data:    data,
 	})
 	c.Abort()
 }
@@ -45,9 +45,9 @@ func (c *Context) JsonError(code int, data string) {
 		errMsg = constants.StatusText(code)
 	}
 	c.Context.JSON(http.StatusOK, Response{
-		Code:   code,
-		ErrMsg: errMsg,
-		Data:   "",
+		Code:    code,
+		Message: errMsg,
+		Data:    "",
 	})
 	c.Abort()
 }

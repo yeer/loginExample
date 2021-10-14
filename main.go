@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"loginExample/cmd"
 )
 
 const (
@@ -10,13 +11,13 @@ const (
 )
 
 func main() {
-	//捕获全局panic异常
+	//globle panic
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println("panic异常——", err)
+			fmt.Println("panic:", err)
 			return
 		}
 	}()
-	//命令初始化
+	//start
 	cmd.Execute()
 }

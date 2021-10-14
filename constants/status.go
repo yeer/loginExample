@@ -11,18 +11,18 @@ const (
 	StatusDbNoResult   = 2003
 	StatusProgramError = 2500
 
-	StatusCreateUrlFailure = 3001
-	StatusGetUrlFailure    = 3002
+	StatusCreateFailure = 3001
+	StatusLoginFailure  = 3002
 )
 
 var statusText = map[int]string{
-	StatusOk:               "OK",
-	StatusParamsError:      "params error",
-	StatusResultEmpty:      "result empty",
-	StatusDbNoResult:       "No record in the database",
-	StatusProgramError:     "Internal Server Error",
-	StatusCreateUrlFailure: "Create Data Error",
-	StatusGetUrlFailure:    "get short url failure",
+	StatusOk:            "OK",
+	StatusParamsError:   "params error",
+	StatusResultEmpty:   "result empty",
+	StatusDbNoResult:    "No record in the database",
+	StatusProgramError:  "Internal Server Error",
+	StatusCreateFailure: "Create Data Error",
+	StatusLoginFailure:  "Incorrect username or password",
 }
 
 func StatusText(code int) string {

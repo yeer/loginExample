@@ -1,0 +1,11 @@
+/logs
+/build/logs
+conf.yaml
+*.log
+go.sum
+main
+docker/.env
+lib
+nohup.out
+.initialized
+.run
