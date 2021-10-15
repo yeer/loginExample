@@ -1,6 +1,6 @@
-> [English version](ERADME_EN.md)
+> [English version](https://github.com/yeer/loginExample/blob/master/README_EN.md)
 
-> [中文版](ERADME.md)
+> [中文版](https://github.com/yeer/loginExample/blob/master/README.md)
 
 ## illustrate
 
