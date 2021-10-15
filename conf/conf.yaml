@@ -5,16 +5,16 @@ server:
 component:
   db:
     user:
-      host: "mysql"
+      host: "127.0.0.1"
       port: "3306"
       user: "root"
-      password: ""
+      password: "root"
       database: "user"
   redis:
     user:
-      host: "redis"
+      host: "127.0.0.1"
       port: "6379"
-      password: ""
+      password: "root"
       db: 0
   log:
     console: true

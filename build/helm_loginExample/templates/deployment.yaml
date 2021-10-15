@@ -52,26 +52,25 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             {{- toYaml .Values.volumeMounts | nindent 12 }}
-        - name: redis
-          command:
-            {{- toYaml .Values.command | nindent 12 }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: bitnami/redis
-          ports:
-            - containerPort: 6379
-              name: redis
         - name: mysql
-          command:
-            {{- toYaml .Values.command | nindent 12 }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: mysql:5.7.14
           #"{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 3306
               name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+        - name: redis
+          image: bitnami/redis
+          ports:
+            - containerPort: 6379
+              name: redis
+          env:
+            - name: REDIS_PASSWORD
+              value: "root"
+
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }} 
       hostAliases:
