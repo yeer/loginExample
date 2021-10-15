@@ -45,13 +45,14 @@ securityContext:
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-command: ["/bin/login", "server", "-c", "/conf/conf.yaml"]
+# command: ["/bin/login", "server", "-c", "/conf/conf.yaml"]
+command: ["sh", "-c", "sleep 15 && /bin/login server -c /conf/conf.yaml"]
 
 service:
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: http
-      port: 10010
+      port: 30010
 volumes:
 
 volumeMounts:
@@ -62,10 +63,10 @@ traefik:
   #   routes:
   #     - match: Host(`test-login.chope.com`)
   #       port: 80
-  http:
-    services:
-      - name: login
-        port: 80
+  routes:
+    - match: Host(`user.chope.com`)
+      servicePort: 30010
+      port: 80
 ingress:
   enabled: false
   annotations:

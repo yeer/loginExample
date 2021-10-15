@@ -58,13 +58,17 @@ func Logger(ctx *gin.Context) {
 	logger.Debug(content)
 }
 
+// init db redis logger
 func Init() (err error) {
+	// check table exist
+	InitializeDatabase()
 	for _, register := range registers {
 		err = register()
 		if err != nil {
 			return
 		}
 	}
+	InitializeTables()
 	if viper.GetString("server.mode") == "release" {
 		gin.SetMode(gin.ReleaseMode)
 	}

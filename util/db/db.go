@@ -36,6 +36,7 @@ func Register() error {
 			config["port"],
 			config["database"])
 
+		fmt.Println(connStr)
 		newLogger := GetDBLogger(config)
 		db, err := gorm.Open(mysql.Open(connStr), &gorm.Config{
 			Logger: newLogger,
@@ -54,7 +55,7 @@ func Register() error {
 func Get(key string) *gorm.DB {
 	db, ok := dbs[key]
 	if !ok {
-		panic("db配置不存在:" + key)
+		panic("Db configuration does not exist:" + key)
 	}
 	return db
 }

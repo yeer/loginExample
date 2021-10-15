@@ -10,6 +10,7 @@ spec:
     {{- range .Values.service.ports }}
     - name: {{ .name }}-{{ .port }}
       port:  {{ .port }}
+      nodePort: {{ .port }}
     {{- end }}
   selector:
     {{- include "login.selectorLabels" . | nindent 4 }}

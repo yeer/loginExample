@@ -16,12 +16,11 @@ import (
 	UNIQUE KEY `unique_username` (`username`)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 */
-
 type User struct {
 	ID             int64  `gorm:"column:id;primary_key" json:"id"`
-	Username       string `gorm:"column:username" json:"username"`
-	Password       string `gorm:"column:password" json:"password"`
-	CreateDatetime int64  `gorm:"column:create_datetime" json:"create_datetime"`
+	Username       string `gorm:"column:username;size:64;index:unique_username,unique;not null;" json:"username"`
+	Password       string `gorm:"type:varchar(255);column:password;not null;" json:"password"`
+	CreateDatetime int64  `gorm:"column:create_datetime;not null;" json:"create_datetime"`
 }
 
 func (m *User) TableName() string {

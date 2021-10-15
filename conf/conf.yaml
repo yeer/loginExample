@@ -1,6 +1,6 @@
 server:
   mode: "debug"
-  port: "10010"
+  port: "30010"
   domain: "http://127.0.0.1"
 component:
   db:

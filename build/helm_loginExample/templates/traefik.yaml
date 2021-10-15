@@ -10,10 +10,13 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`{{ include "login.http" . }}`)
+    {{- range .Values.traefik.routes }}
+    - match: {{ .match }}
       kind: Rule
       services:
-  {{- toYaml .Values.traefik.http.services | nindent 8 }}
+        - name: {{ $fullName }}
+          port: {{ .servicePort }}
+    {{- end }}
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
