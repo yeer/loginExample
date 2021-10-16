@@ -7,8 +7,9 @@
 1. The MACOS system relies on the following software
    - docker (Docker Desktop)
    - Kubernetes (Docker Desktop)
-   - Need to modify the mirror address -`vim ~/.docker/daemon.json`
-   - Add the following content to json: `"registry-mirrors":["https://u99q7fs9.mirror.aliyuncs.com"]`
+     - Need to modify the mirror address
+     - `vim ~/.docker/daemon.json`
+     - Add the following content to json: `"registry-mirrors":["https://u99q7fs9.mirror.aliyuncs.com"]`
    - Make
    - helm
    - golang v1.16
