@@ -1,6 +1,6 @@
-> [English version](ERADME_EN.md)
+> [English version](README_EN.md)
 
-> [中文版](ERADME.md)
+> [中文版](README.md)
 
 ## 说明
 
