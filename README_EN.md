@@ -27,8 +27,10 @@
 
 #### Curl method
 
-1. Create a user: -`curl -X POST -d'username=foo&password=xx22@4' "http://127.0.0.1:30010/v1/users/create"`
-2. User login -`curl -X POST -d'username=foo&password=xx22@4' "http://127.0.0.1:30010/v1/login`
+1. Create a user:
+   - `curl -X POST -d'username=foo&password=xx22@4' "http://127.0.0.1:30010/v1/users/create"`
+2. User login
+   - `curl -X POST -d'username=foo&password=xx22@4' "http://127.0.0.1:30010/v1/login`
 
 #### Single test method
 
